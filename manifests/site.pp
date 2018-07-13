@@ -7,7 +7,10 @@ node ip-10-0-7-236 {
 }
 
 node ip-10-0-7-8 {
+include sshd
 }
 
-node ip-10-0-7-108 {
+
+node ip-10-0-7-108 {  
+include sshd 
 }
