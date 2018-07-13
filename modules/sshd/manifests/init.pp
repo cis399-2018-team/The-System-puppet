@@ -3,13 +3,14 @@ class sshd {
 		"sshd":ensure => installed;
 	}
 	file { "/etc/ssh/sshd_config":
-		source	=> 
+		source	=> [
 			puppet:///modeuls/sshd/files/$hostname/sshd.conf,
 			puppet:///modules/sshd/sshd.conf",
+		],
 		mode	=> 444,
 		owner 	=> root,
 		group => root,
-		require => Package["sshd"]
+		require => Package["sshd"],
 	}
 	
 	service { "sshd":
@@ -19,8 +20,9 @@ class sshd {
 	hasstatus	=> true,
 	hasrestart	=> true,
 	require	=> [ Package["sshd"],
-			File["/etc/sshd.conf]
-	subscribe	=> File["/etc/sshd.conf"]
+			File["/etc/sshd.conf]],
+	subscribe	=> File["/etc/sshd.conf"],
+	}
 	
 	ssh_authorized_key { "quinn_key":
 		user => "ubuntu",
