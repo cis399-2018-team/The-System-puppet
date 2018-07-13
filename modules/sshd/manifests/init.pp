@@ -20,7 +20,7 @@ class sshd {
 	hasstatus	=> true,
 	hasrestart	=> true,
 	require	=> [ Package["sshd"],
-			File["/etc/sshd.conf]],
+			File["/etc/sshd.conf]"],
 	subscribe	=> File["/etc/sshd.conf"],
 	}
 	
