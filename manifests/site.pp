@@ -3,6 +3,7 @@ node ip-10-0-7-236 {
 		command => "cd /etc/puppet && git pull -q origin master",
 		user => root,
 		minute =>"*/5"
+		include sshd
 	}
 }
 
