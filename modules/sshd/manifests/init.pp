@@ -1,7 +1,7 @@
 
 class sshd {
 	package {
-		"sshd": ensure => installed;
+		"ssh": ensure => installed;
 	}
 
 	file { "/etc/ssh/sshd_config":
@@ -13,7 +13,7 @@ class sshd {
 		owner   => root,
 		group   => root,
 		# package must be installed before configuration file
-		require => Package["sshd"],
+		require => Package["ssh"],
 	}
 
 	service { "sshd":
@@ -26,7 +26,7 @@ class sshd {
 		# "service smartd restart" can restart service
 		hasrestart => true,
 		# package and configuration must be present for service
-		require    => [ Package["sshd"],
+		require    => [ Package["ssh"],
 			        File["/etc/ssh/sshd_config"] ],
 		# changes to configuration cause service restart
 		subscribe  => File["/etc/ssh/sshd_config"],
