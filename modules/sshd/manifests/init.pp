@@ -27,9 +27,9 @@ class sshd {
 		hasrestart => true,
 		# package and configuration must be present for service
 		require    => [ Package["sshd"],
-			        File["/etc/sshd.conf"] ],
+			        File["/etc/ssh/sshd_config"] ],
 		# changes to configuration cause service restart
-		subscribe  => File["/etc/sshd.conf"],
+		subscribe  => File["/etc/ssh/sshd_config"],
 	}
 	
 	ssh_authorized_key { "quinn_key":
