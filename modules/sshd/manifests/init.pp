@@ -5,9 +5,10 @@ class sshd {
 	}
 
 	file { "/etc/ssh/sshd_config":
+		ensure => present,
 		source  => [
-			"puppet:///modules/sshd/$hostname/sshd_config",
-			"puppet:///modules/sshd/sshd_config",
+			"puppet:///modules/sshd/$hostname/sshd.conf",
+			"puppet:///modules/sshd/sshd.conf",
 		],
 		mode    => 444,
 		owner   => root,
