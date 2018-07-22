@@ -8,7 +8,7 @@ class apache {
 		ensure => present,
 		source => [
 			"puppet:///modules/apache/$hostname/apache2.conf",
-			"puppet:///moudles/apache/apache2.conf"],
+			"puppet:///modules/apache/apache2.conf"],
 		mode => 444,
 		owner => root,
 		group => root,
