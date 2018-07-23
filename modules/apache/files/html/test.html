@@ -12,7 +12,7 @@
 		</style>
 	</head>
 	<body>
-		<iframe width="0" height="0" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/186882788&amp;auto_play=true&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
+		<iframe width="0" height="0" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/444968403&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
 		<script src="http://brangerbriz.net/labs/threejs_playGnd/js/three.min.js"></script>
 		<script src="http://brangerbriz.net/labs/threejs_playGnd/js/Detector.js"></script>
 		    
@@ -43,6 +43,20 @@
 </script>
 		<script>
 
+    /*
+                   /\
+                  / /    ._.       __    
+                 / / ____| | ____ |  | __
+                / / /    \ |/ ___\|  |/ /
+        /\ /\  / /  |   |  \\  \___|    < 
+        \/ \/ / /   \ __|  /_\___  >__|_ \
+             / /         \/ |    \/     \/
+             \/       _ |\|_|/|_
+                      \  . .  /
+                      /   ~   \
+                       \/ \/ \/  copy<it>right 2013
+					   				../n!ck
+    */
 			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 			
 			var camera, scene, renderer;
@@ -55,34 +69,37 @@
 				renderer.setSize( W, H );
 				document.body.appendChild( renderer.domElement );
 
-				camera = new THREE.PerspectiveCamera( 50, W/H, 1, 10000 );
+				camera = new THREE.PerspectiveCamera( 50, W/H, 1, 1000 );
 				camera.position.z = 500;
 
 				scene = new THREE.Scene();
 				
-				map = THREE.ImageUtils.loadTexture('../texturez/proxy.php?url=https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/NeXT_logo.svg/1200px-NeXT_logo.svg.png');
-				geometry = new THREE.CubeGeometry(100, 100, 100);
-				material = new THREE.MeshBasicMaterial({shading: THREE.FlatShading, color: 0xdcdcdc, map: map});
+				geometry = new THREE.TorusKnotGeometry(87.27, 9.63, 26, 2, 8.74, 6.16, 6.92);
+				material = new THREE.MeshBasicMaterial({shading: THREE.FlatShading, color: 0xdcdcdc, wireframe: true, wireframeLinewidth: 1});
 				mesh = new THREE.Mesh(geometry, material);
-				map.wrapS = map.wrapT = THREE.RepeatWrapping;
-				map.repeat.set( 1, 1 );
 				scene.add(mesh);
 
 
 
 			}
+			
+			function knot() {
+				scene.remove(mesh);
+				var x = Date.now() *0.001;
+				geometry = new THREE.TorusKnotGeometry(87.27, 9.63, 26, 2, 8.74, x, 6.92);
+				material = new THREE.MeshBasicMaterial({shading: THREE.FlatShading, color: 0xdcdcdc, wireframe: true, wireframeLinewidth: 1});
+				mesh = new THREE.Mesh(geometry, material);
+				mesh.scale.x = mesh.scale.y = mesh.scale.z = 1.52;
+				scene.add(mesh);			
+			
+			}
 
 			function draw() {
 
 				requestAnimationFrame( draw );
-				
-				// experiment with code from the snippets menu here
-					camera.position.y = Math.sin( Date.now() * 0.002 ) * 10;
-				mesh.position.y = Math.sin( Date.now() * 0.002 ) * 300;
-				mesh.rotation.x = Date.now() * 0.00005;	
-				mesh.rotation.y = Date.now() * 0.0003;	
-				mesh.rotation.z = Date.now() * 0.000002;
-				camera.lookAt(mesh.position);
+				knot();
+				camera.position.x = Math.sin( Date.now() * 0.002 ) * 50;
+				camera.rotation.z = Date.now() * 0.0005;
 				renderer.render( scene, camera );
 
 			}
