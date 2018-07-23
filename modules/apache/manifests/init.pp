@@ -13,13 +13,14 @@ class apache {
 		owner => root,
 		group => root,
 		# package must be installed before configuration file
-		require => Package["apache2"],
-		recurse => true
+		require => Package["apache2"]
+		
 	}
 
 	file {
 		"/var/www/html":
-		ensure => present,
+		ensure => directory,
+		recurse = true,
 		source => "puppet:///modules/apache/html/",
 		mode => 444,
 		owner => root,
