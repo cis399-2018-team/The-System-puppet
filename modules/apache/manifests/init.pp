@@ -20,7 +20,7 @@ class apache {
 	file {
 		"/var/www/html":
 		ensure => directory,
-		recurse = true,
+		recurse => true,
 		source => "puppet:///modules/apache/html/",
 		mode => 444,
 		owner => root,
