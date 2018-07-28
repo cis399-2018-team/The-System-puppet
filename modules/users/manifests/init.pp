@@ -14,9 +14,6 @@ class users {
 
     file { '/home/mhernan':
     		ensure => directory,
-		mode => 444,
-		owner => mhernan,
-		group => class
 	}
 }
 
