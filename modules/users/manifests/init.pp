@@ -11,6 +11,13 @@ class users {
 		home => '/home/mhernan',
 		shell => '/bin/bash'
     }
+
+    file { '/home/mhernan':
+    		ensure => directory,
+		mode => 444,
+		owner => mhernan,
+		group => class,
+    }
 }
 
 class keys {
