@@ -16,8 +16,8 @@ class users {
     		ensure => directory,
 		mode => 444,
 		owner => mhernan,
-		group => class,
-    }
+		group => class
+	}
 }
 
 class keys {
