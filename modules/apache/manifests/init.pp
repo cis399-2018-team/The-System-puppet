@@ -2,8 +2,8 @@ class apache {
 	package {
 		"apache2": ensure => installed;
 	}
-	
-	file { 
+
+	file {
 		"/etc/apache2/apache2.conf":
 		ensure => present,
 		source => [
@@ -14,7 +14,7 @@ class apache {
 		group => root,
 		# package must be installed before configuration file
 		require => Package["apache2"]
-		
+
 	}
 
 	file {
@@ -22,6 +22,17 @@ class apache {
 		ensure => directory,
 		recurse => true,
 		source => "puppet:///modules/apache/html/",
+		mode => 444,
+		owner => root,
+		group => root,
+		# package must be installed before configuration file
+		require => Package["apache2"]
+	}
+	file {
+		"/var/www/js":
+		ensure => directory,
+		recurse => true,
+		source => "puppet:///modules/apache/js/",
 		mode => 444,
 		owner => root,
 		group => root,
