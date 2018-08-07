@@ -28,18 +28,6 @@ class apache {
 		# package must be installed before configuration file
 		require => Package["apache2"]
 	}
-	file {
-		"/var/www/js":
-		ensure => directory,
-		recurse => true,
-		source => "puppet:///modules/apache/js/",
-		mode => 444,
-		owner => root,
-		group => root,
-		# package must be installed before configuration file
-		require => Package["apache2"]
-	}
-
 	service {
 		"apache2":
 		# automatically start at boot time
