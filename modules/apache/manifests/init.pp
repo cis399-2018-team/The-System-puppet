@@ -18,22 +18,11 @@ class apache {
 	}
 
 	file {
-		"/var/www/html":
-		ensure => directory,
-		recurse => true,
-		source => "puppet:///modules/apache/html/",
-		mode => 444,
-		owner => root,
-		group => root,
-		# package must be installed before configuration file
-		require => Package["apache2"]
-	}
-	file {
 		"/etc/apache2/sites-available/000-default.conf":
 		ensure => present,
-		source => ["puppet:///modules/apache/000-deault.conf"].
+		source => "puppet:///modules/apache/000-deault.conf",
 		mode => 444,
-		owner => root,
+		owner => root, 
 		group => root,
 		require => Package["apache2"]
 	}
@@ -52,7 +41,9 @@ class apache {
 		require    => [ Package["apache2"],
 				File["/etc/apache2/apache2.conf"] ],
 		# changes to configuration cause service restart
-		subscribe  => File[["/etc/apache2/sites-available/000-default.conf"]["/etc/apache2/apache2.conf"]]
+		subscribe  => [
+				File["/etc/apache2/sites-available/000-default.conf"], 
+				File["/etc/apache2/apache2.conf"]]
 	}
 
 }
