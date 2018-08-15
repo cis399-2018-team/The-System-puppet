@@ -1,6 +1,5 @@
 class The-System{
   package {
-    "apache2": ensure => installed;
     "python3": ensure => installed;
     "pip3": ensure => installed;
   }
@@ -12,9 +11,25 @@ class The-System{
     source => "puppet:///modules/The-System/the-system-app/",
     mode => 444,
     owner => root,
-    group => root,
-    require => Package("apache2")
+    group => root
   }
+
+  file {
+    ensure => directory,
+    recurse => true,
+    source => "puppet:///modules/The-System/the-system.service",
+    mode => 444,
+    owner => root,
+    group => root
+  }
+
   service {
+    "system-service":
+    enable => true,
+    ensure => running,
+    hasstatus => true,
+    hasrestart => true,
+    require => File["/var/www/the-system-app"]
+    subscribe => File["/var/www/the-system-app"]
   }
 }

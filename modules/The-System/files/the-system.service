@@ -1,0 +1,12 @@
+[Unit]
+Description=the-system
+After=network.target
+
+[Service]
+User=<your uname>
+Restart=on-failure
+WorkingDirectory=/var/www/the-system-app/
+ExecStart=/var/www/the-system-app/env/bin/gunicorn -c /var/www/the-system-app/gunicorn.conf -b 0.0.0.0:5000 the-system:app
+
+[Install]
+WantedBy=multi-user.target
