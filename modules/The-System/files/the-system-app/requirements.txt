@@ -1,0 +1,4 @@
+Flask
+nose
+pymongo
+gunicorn
