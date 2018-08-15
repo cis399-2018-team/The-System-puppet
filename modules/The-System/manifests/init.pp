@@ -29,7 +29,7 @@ class The-System{
     ensure => running,
     hasstatus => true,
     hasrestart => true,
-    require => File["/var/www/the-system-app"]
+    require => File["/var/www/the-system-app"],
     subscribe => File["/var/www/the-system-app"]
   }
 }
