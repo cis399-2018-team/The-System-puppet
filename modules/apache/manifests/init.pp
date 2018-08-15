@@ -20,7 +20,7 @@ class apache {
 	file {
 		"/etc/apache2/sites-available/000-default.conf":
 		ensure => present,
-		source => "puppet:///modules/apache/000-deault.conf",
+		source => "puppet:///modules/apache/000-default.conf",
 		mode => 444,
 		owner => root, 
 		group => root,

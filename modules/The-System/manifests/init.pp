@@ -1,35 +1,46 @@
-class The-System{
-  package {
-    "python3": ensure => installed;
-    "pip3": ensure => installed;
-  }
+class The-System {
+	package {
+		"python3": ensure => installed,
+	}
 
-  file {
-    "/var/www/the-system-app":
-    ensure => directory,
-    recurse => true,
-    source => "puppet:///modules/The-System/the-system-app/",
-    mode => 444,
-    owner => root,
-    group => root
-  }
+	package {
+		"python3-pip": ensure => installed,
+	}
 
-  file {
-    ensure => directory,
-    recurse => true,
-    source => "puppet:///modules/The-System/the-system.service",
-    mode => 444,
-    owner => root,
-    group => root
-  }
+	file { 
+		"/var/www/the-system-app": 
+		ensure => directory, 
+		recurse => true, 
+		purge => true,
+		source => "puppet:///modules/The-System/the-system-app/", 
+		mode => 444,
+		owner => www-data,
+		group => www-data
+	}
 
-  service {
-    "system-service":
-    enable => true,
-    ensure => running,
-    hasstatus => true,
-    hasrestart => true,
-    require => File["/var/www/the-system-app"],
-    subscribe => File["/var/www/the-system-app"]
-  }
+	exec {
+		'install_py_packages':
+		cwd => '/var/www/the-system-app',
+		command => 'pip3 install -r requirements.txt',
+		subscribe => File["/var/www/the-system-app/requirements.txt"] 
+	}
+
+	file {
+		"/etc/systemd/system/the-system.service"
+		ensure => present,
+		source => "puppet:///modules/The-System/the-system.service",
+		mode => 444,
+		owner => root,
+		group => root,
+	}
+
+	service {
+		"the-system":
+			enable => true,
+			ensure => running,
+			hasstatus => true,
+			hasrestart => true,
+			require => File["/etc/systemd/the-system.service"],
+			subscribe => File["/var/www/the-system-app/the-system.py"] 
+	} 
 }
