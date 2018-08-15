@@ -22,7 +22,8 @@ class The-System {
 		'install_py_packages':
 		cwd => '/var/www/the-system-app',
 		command => 'pip3 install -r requirements.txt',
-		subscribe => File["/var/www/the-system-app/requirements.txt"] 
+		subscribe => File["/var/www/the-system-app/requirements.txt"],
+		refresh => true
 	}
 
 	file {
