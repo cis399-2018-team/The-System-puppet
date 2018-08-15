@@ -20,13 +20,39 @@ following tutorial from begining ml5 course.-->
 <style>
   html{font-family: sans-serif;}
   p{font-size: 24px;}
-  h1{text-align: center;
+  h1{text-align: center;}
+  .yesButton{
+    color: #4CAF50;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
   }
+  .noButton{
+    color #ff4732;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    }
 </style>
 
 </head>
 <body>
  <h1 id="status"> Loading Model...</h1>
+<div id='p5_canvas'></div>
+<div id='buttons'>
+  <button class='yesButton' id='yesButton'>correct</button>
+  <button class='noButton' id='noButton'>incorrect</button>
+</div>
+
 </body>
 
 </html>
