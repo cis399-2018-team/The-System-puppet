@@ -27,7 +27,7 @@ class apache {
 		group => root,
 		# package must be installed before configuration file
 		require => Package["apache2"]
-
+	}
 	file {
 		"/etc/apache2/sites-available/000-default.conf":
 		ensure => present,
@@ -37,7 +37,7 @@ class apache {
 		group => root,
 		require => Package["apache2"]
 	}
-	}
+
 	service {
 		"apache2":
 		# automatically start at boot time
