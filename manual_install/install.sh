@@ -22,8 +22,17 @@ cp -r the-system-app/ /var/www/
 
 chown -R ubuntu:ubuntu /var/www/the-system-app/
 
+#create virtual env
+current_dir=$PWD
+cd /var/www/the-system-app/
+python3 -m venv env
+source env/bin/activate
+
 #install python packages
-pip3 install -r /var/www/the-system-app/requirements.txt
+pip3 install -r requirements.txt
+deactivate
+cd $current_dir;
+
 
 #create systemd service file for our app
 cp the-system.service /etc/systemd/system/
