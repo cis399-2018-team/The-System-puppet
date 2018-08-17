@@ -20,7 +20,7 @@ cp 000-default.conf /etc/apache2/sites-available/000-default.conf
 #move flask app to correct dir and give permissions to ubuntu user
 cp -r the-system-app/ /var/www/
 
-chown -r ubuntu:ubuntu /var/www/the-system-app/
+chown -R ubuntu:ubuntu /var/www/the-system-app/
 
 #create virtual env
 #current_dir=$pwd
