@@ -1,0 +1,76 @@
+<!-- Starter code provided from CodingTrain. (github @shiffman)
+following tutorial from begining ml5 course.-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>The System</title>
+
+<meta  http-equiv="X-UA-Compatible" content="ie=edge">
+
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Montserrat:400">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.dom.min.js"></script>
+<script src="https://unpkg.com/ml5@0.1.1/dist/ml5.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/static/js/sketch.js"></script>
+
+<style>
+  html{
+	font-family: sans-serif;
+	background: #ECECEC;
+}
+  p{font-size: 24px;}
+
+  h2 {
+	font-family: 'Monteserrat', sans-serif;
+	font-size: 112px;
+	text-align: center;
+	line-height: 80%;
+	margin: 0px;
+	padding 0px;
+	white-space: nowrap;
+ }
+  h1{text-align: center;}
+  .yesButton{
+    color: #4CAF50;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  .noButton{
+    color #ff4732;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    }
+</style>
+
+</head>
+<body>
+<h2> THE SYSTEM </h2>
+ <h1 id="status"> Loading Model...</h1>
+<div id='p5_canvas'></div>
+<h1> Did the model correctly classify your input? </h1>
+<div id='buttons'>
+  <button class='yesButton' id='yesButton'>correct</button>
+  <button class='noButton' id='noButton'>incorrect</button>
+</div>
+
+</body>
+
+</html>
