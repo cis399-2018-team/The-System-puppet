@@ -7,7 +7,7 @@ class mongo {
 		"mongod":
 		enable => true,
 		ensure => running,
-		hasstatus => running,
+		hasstatus => true,
 		hasrestart => true
 	}
 }
