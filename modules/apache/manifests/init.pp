@@ -114,23 +114,6 @@ class apache {
 		notify => Service['apache2'],
 		require => Package['apache2'],
 	}
-
-	file {
-		'/etc/apache2/mods-enabled/proxy_html.conf':
-		ensure => 'link',
-		target => '/etc/apache2/mods-available/proxy_html.conf',
-		notify => Service['apache2'],
-		require => Package['apache2'],
-	}
-	
-	file {
-		'/etc/apache2/mods-enabled/proxy_html.load':
-		ensure => 'link',
-		target => '/etc/apache2/mods-available/proxy_html.load',
-		notify => Service['apache2'],
-		require => Package['apache2'],
-	}
-
 	service {
 		"apache2":
 		# automatically start at boot time
