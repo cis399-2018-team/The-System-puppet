@@ -1,6 +1,6 @@
 class apache {
 	package {
-		"apache2": ensure => installed,
+		"apache2": ensure => present,
 	}
 
 	file {
@@ -13,6 +13,7 @@ class apache {
 		owner => root,
 		group => root,
 		# package must be installed before configuration file
+		notify => Package["apache2"],
 		require => Package["apache2"]
 
 	}
@@ -24,7 +25,8 @@ class apache {
 		mode => 444,
 		owner => root, 
 		group => root,
-		require => Package["apache2"]
+		require => Package["apache2"],
+		notify => Package["apache2"],
 	}
 
 	# Enable mods
@@ -138,10 +140,6 @@ class apache {
 		enable => true,
 		# restart service if it is not running
 		ensure => running,
-		# "service smartd status" returns useful service status info
-	        hasstatus  => true,
-		# "service smartd restart" can restart service
-		hasrestart => true,
 		# package and configuration must be present for service
 		require    => [ Package["apache2"],
 				File["/etc/apache2/apache2.conf"] ],
