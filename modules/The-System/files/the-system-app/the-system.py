@@ -14,11 +14,13 @@ app = Flask(__name__)
 @app.route("/")
 @app.route("/index")
 def index():
-    return render_template('index.html')
+    return render_template('image.html')
 
+'''
 @app.route("/image")
 def image():
         return render_template('image.html')
+'''
 
 @app.route("/results", methods=['POST'])
 def results():
@@ -27,7 +29,7 @@ def results():
 	result = {"label": label,
 		"probability":prob}
 	collection.insert(result)
-	return redirect(url_for('image'))
+	return redirect(url_for('index'))
 
 if __name__ == '__main__':
 	app.run()
