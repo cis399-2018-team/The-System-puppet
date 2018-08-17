@@ -1,10 +1,10 @@
 class thesystem {
 	package {
-		"python3": ensure => installed,
+		"python3": ensure => present,
 	}
 
 	package {
-		"python3-pip": ensure => installed,
+		"python3-pip": ensure => present,
 	}
 
 	file { 
@@ -39,9 +39,14 @@ class thesystem {
 		"the-system":
 			enable => true,
 			ensure => running,
-			hasstatus => true,
-			hasrestart => true,
 			require => File["/etc/systemd/the-system.service"],
 			subscribe => File["/var/www/the-system-app/the-system.py"] 
 	} 
+
+	service {
+		'apache2':
+			ensure => running,
+			enable => true,
+			require => Package['apache2'],
+	}
 }
