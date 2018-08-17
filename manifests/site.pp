@@ -10,17 +10,17 @@ node ip-10-0-7-236 {
 
 node ip-10-0-7-8 {
 	include sshd
-	include apache
+#	include apache
 	include users
-#	include mongo
-#	include thesystem
+	include mongo
+	include thesystem
 }
 
 
 node ip-10-0-7-108 {  
 	include sshd 
-	include apache
+#	include apache
 	include users
-#	include mongo
-#	include thesystem
+	include mongo
+	include thesystem
 }
