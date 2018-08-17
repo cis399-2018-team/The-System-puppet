@@ -14,8 +14,6 @@ class apache {
 		group => root,
 		# package must be installed before configuration file
 		notify => Package["apache2"],
-		require => Package["apache2"]
-
 	}
 
 	file {
@@ -25,7 +23,6 @@ class apache {
 		mode => 444,
 		owner => root, 
 		group => root,
-		require => Package["apache2"],
 		notify => Package["apache2"],
 	}
 
