@@ -49,6 +49,7 @@ class apache {
 	exec {
 		'enable_mods':
 		cwd => '/etc/apache2/mods-enabled/',
+		path => '/bin',
 		command => 'a2enmod proxy proxy_ajp proxy_http rewrite deflate headers proxy_balancer proxy_connect proxy_html',
 		# Check if mods are already there
 		unless => 'test -L proxy_http.load',
