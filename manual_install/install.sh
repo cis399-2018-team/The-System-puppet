@@ -31,11 +31,10 @@ source env/bin/activate
 #install python packages
 pip3 install -r requirements.txt
 deactivate
-cd $current_dir;
+cd $current_dir
 
 
 #create systemd service file for our app
 cp the-system.service /etc/systemd/system/
 systemctl daemon-reload # to activate our .service file
 systemctl enable the-system # to enable our app at boot
-systemctl start the-system # to run our app
