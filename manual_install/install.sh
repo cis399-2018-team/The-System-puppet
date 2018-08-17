@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #install packages
-apt-get install -y apache2 python3 python3-pip
+apt-get install -y apache2 python3 python3-pip python3-venv
 
 #install mongodb
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
@@ -20,21 +20,16 @@ cp 000-default.conf /etc/apache2/sites-available/000-default.conf
 #move flask app to correct dir and give permissions to ubuntu user
 cp -r the-system-app/ /var/www/
 
-chown -R ubuntu:ubuntu /var/www/the-system-app/
+chown -r ubuntu:ubuntu /var/www/the-system-app/
 
 #create virtual env
-current_dir=$PWD
+#current_dir=$pwd
 cd /var/www/the-system-app/
 python3 -m venv env
 source env/bin/activate
 
 #install python packages
 pip3 install -r requirements.txt
-deactivate
-cd $current_dir
+#cd $current_dir
+gunicorn -c gunicorn.conf -b 0.0.0.0:5000 the-system:app
 
-
-#create systemd service file for our app
-cp the-system.service /etc/systemd/system/
-systemctl daemon-reload # to activate our .service file
-systemctl enable the-system # to enable our app at boot
