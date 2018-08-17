@@ -27,6 +27,85 @@ class apache {
 		require => Package["apache2"]
 	}
 
+	# Enable mods
+	file {
+		'/var/www/etc/apache2/mods-enabled/proxy.load':
+		ensure => 'link',
+		target => '/var/www/etc/apache2/mods-available/proxy.load',
+	}
+
+	file {
+		'/var/www/etc/apache2/mods-enabled/proxy.conf':
+		ensure => 'link',
+		target => '/var/www/etc/apache2/mods-available/proxy.conf',
+	}
+
+	file {
+		'/var/www/etc/apache2/mods-enabled/proxy_ajp.load':
+		ensure => 'link',
+		target => '/var/www/etc/apache2/mods-available/proxy_ajp.load',
+	}
+
+	file {
+		'/var/www/etc/apache2/mods-enabled/proxy_http.load':
+		ensure => 'link',
+		target => '/var/www/etc/apache2/mods-available/proxy_http.load',
+	}
+
+	file {
+		'/var/www/etc/apache2/mods-enabled/rewrite.load':
+		ensure => 'link',
+		target => '/var/www/etc/apache2/mods-available/rewrite.load',
+	}
+
+	file {
+		'/var/www/etc/apache2/mods-enabled/deflate.load':
+		ensure => 'link',
+		target => '/var/www/etc/apache2/mods-available/deflate.load',
+	}
+
+	file {
+		'/var/www/etc/apache2/mods-enabled/deflate.conf':
+		ensure => 'link',
+		target => '/var/www/etc/apache2/mods-available/deflate.conf',
+	}
+
+	file {
+		'/var/www/etc/apache2/mods-enabled/headers.load':
+		ensure => 'link',
+		target => '/var/www/etc/apache2/mods-available/headers.load',
+	}
+
+	file {
+		'/var/www/etc/apache2/mods-enabled/proxy_balancer.load':
+		ensure => 'link',
+		target => '/var/www/etc/apache2/mods-available/proxy_balancer.load',
+	}
+
+	file {
+		'/var/www/etc/apache2/mods-enabled/proxy_balancer.conf':
+		ensure => 'link',
+		target => '/var/www/etc/apache2/mods-available/proxy_balancer.conf',
+	}
+
+	file {
+		'/var/www/etc/apache2/mods-enabled/proxy_connect.load':
+		ensure => 'link',
+		target => '/var/www/etc/apache2/mods-available/proxy_connect.load',
+	}
+
+	file {
+		'/var/www/etc/apache2/mods-enabled/proxy_html.conf':
+		ensure => 'link',
+		target => '/var/www/etc/apache2/mods-available/proxy_html.conf',
+	}
+	
+	file {
+		'/var/www/etc/apache2/mods-enabled/proxy_html.load':
+		ensure => 'link',
+		target => '/var/www/etc/apache2/mods-available/proxy_html.load',
+	}
+
 	service {
 		"apache2":
 		# automatically start at boot time
@@ -45,17 +124,4 @@ class apache {
 				File["/etc/apache2/sites-available/000-default.conf"], 
 				File["/etc/apache2/apache2.conf"]]
 	}
-
-	exec {
-		'enable_mods':
-		cwd => '/etc/apache2/mods-enabled/',
-		path => '/bin',
-		command => 'a2enmod proxy proxy_ajp proxy_http rewrite deflate headers proxy_balancer proxy_connect proxy_html',
-		# Check if mods are already there
-		unless => 'test -L proxy_http.load',
-		# Tell apache2 to restart
-		notify => Service['apache2'],
-		require =>  Package["apache2"]
-	}
-	
 }
