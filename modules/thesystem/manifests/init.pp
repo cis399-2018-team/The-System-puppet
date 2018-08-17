@@ -12,7 +12,7 @@ class thesystem {
 		ensure => directory, 
 		recurse => true, 
 		purge => true,
-		source => "puppet:///modules/The-System/the-system-app/", 
+		source => "puppet:///modules/thesystem/the-system-app/", 
 		mode => 444,
 		owner => www-data,
 		group => www-data
@@ -29,7 +29,7 @@ class thesystem {
 	file {
 		"/etc/systemd/system/the-system.service":
 		ensure => present,
-		source => "puppet:///modules/The-System/the-system.service",
+		source => "puppet:///modules/thesystem/the-system.service",
 		mode => 444,
 		owner => root,
 		group => root,
