@@ -29,81 +29,107 @@ class apache {
 
 	# Enable mods
 	file {
-		'/var/www/etc/apache2/mods-enabled/proxy.load':
+		'/etc/apache2/mods-enabled/proxy.load':
 		ensure => 'link',
-		target => '/var/www/etc/apache2/mods-available/proxy.load',
+		target => '/etc/apache2/mods-available/proxy.load',
+		notify => Service['apache2'],
+		require => Package['apache2'],
 	}
 
 	file {
-		'/var/www/etc/apache2/mods-enabled/proxy.conf':
+		'/etc/apache2/mods-enabled/proxy.conf':
 		ensure => 'link',
-		target => '/var/www/etc/apache2/mods-available/proxy.conf',
+		target => '/etc/apache2/mods-available/proxy.conf',
+		notify => Service['apache2'],
+		require => Package['apache2'],
 	}
 
 	file {
-		'/var/www/etc/apache2/mods-enabled/proxy_ajp.load':
+		'/etc/apache2/mods-enabled/proxy_ajp.load':
 		ensure => 'link',
-		target => '/var/www/etc/apache2/mods-available/proxy_ajp.load',
+		target => '/etc/apache2/mods-available/proxy_ajp.load',
+		notify => Service['apache2'],
+		require => Package['apache2'],
 	}
 
 	file {
-		'/var/www/etc/apache2/mods-enabled/proxy_http.load':
+		'/etc/apache2/mods-enabled/proxy_http.load':
 		ensure => 'link',
-		target => '/var/www/etc/apache2/mods-available/proxy_http.load',
+		target => '/etc/apache2/mods-available/proxy_http.load',
+		notify => Service['apache2'],
+		require => Package['apache2'],
 	}
 
 	file {
-		'/var/www/etc/apache2/mods-enabled/rewrite.load':
+		'/etc/apache2/mods-enabled/rewrite.load':
 		ensure => 'link',
-		target => '/var/www/etc/apache2/mods-available/rewrite.load',
+		target => '/etc/apache2/mods-available/rewrite.load',
+		notify => Service['apache2'],
+		require => Package['apache2'],
 	}
 
 	file {
-		'/var/www/etc/apache2/mods-enabled/deflate.load':
+		'/etc/apache2/mods-enabled/deflate.load':
 		ensure => 'link',
-		target => '/var/www/etc/apache2/mods-available/deflate.load',
+		target => '/etc/apache2/mods-available/deflate.load',
+		notify => Service['apache2'],
+		require => Package['apache2'],
 	}
 
 	file {
-		'/var/www/etc/apache2/mods-enabled/deflate.conf':
+		'/etc/apache2/mods-enabled/deflate.conf':
 		ensure => 'link',
-		target => '/var/www/etc/apache2/mods-available/deflate.conf',
+		target => '/etc/apache2/mods-available/deflate.conf',
+		notify => Service['apache2'],
+		require => Package['apache2'],
 	}
 
 	file {
-		'/var/www/etc/apache2/mods-enabled/headers.load':
+		'/etc/apache2/mods-enabled/headers.load':
 		ensure => 'link',
-		target => '/var/www/etc/apache2/mods-available/headers.load',
+		target => '/etc/apache2/mods-available/headers.load',
+		notify => Service['apache2'],
+		require => Package['apache2'],
 	}
 
 	file {
-		'/var/www/etc/apache2/mods-enabled/proxy_balancer.load':
+		'/etc/apache2/mods-enabled/proxy_balancer.load':
 		ensure => 'link',
-		target => '/var/www/etc/apache2/mods-available/proxy_balancer.load',
+		target => '/etc/apache2/mods-available/proxy_balancer.load',
+		notify => Service['apache2'],
+		require => Package['apache2'],
 	}
 
 	file {
-		'/var/www/etc/apache2/mods-enabled/proxy_balancer.conf':
+		'/etc/apache2/mods-enabled/proxy_balancer.conf':
 		ensure => 'link',
-		target => '/var/www/etc/apache2/mods-available/proxy_balancer.conf',
+		target => '/etc/apache2/mods-available/proxy_balancer.conf',
+		notify => Service['apache2'],
+		require => Package['apache2'],
 	}
 
 	file {
-		'/var/www/etc/apache2/mods-enabled/proxy_connect.load':
+		'/etc/apache2/mods-enabled/proxy_connect.load':
 		ensure => 'link',
-		target => '/var/www/etc/apache2/mods-available/proxy_connect.load',
+		target => '/etc/apache2/mods-available/proxy_connect.load',
+		notify => Service['apache2'],
+		require => Package['apache2'],
 	}
 
 	file {
-		'/var/www/etc/apache2/mods-enabled/proxy_html.conf':
+		'/etc/apache2/mods-enabled/proxy_html.conf':
 		ensure => 'link',
-		target => '/var/www/etc/apache2/mods-available/proxy_html.conf',
+		target => '/etc/apache2/mods-available/proxy_html.conf',
+		notify => Service['apache2'],
+		require => Package['apache2'],
 	}
 	
 	file {
-		'/var/www/etc/apache2/mods-enabled/proxy_html.load':
+		'/etc/apache2/mods-enabled/proxy_html.load':
 		ensure => 'link',
-		target => '/var/www/etc/apache2/mods-available/proxy_html.load',
+		target => '/etc/apache2/mods-available/proxy_html.load',
+		notify => Service['apache2'],
+		require => Package['apache2'],
 	}
 
 	service {
