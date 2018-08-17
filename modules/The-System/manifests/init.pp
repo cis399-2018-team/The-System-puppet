@@ -1,4 +1,4 @@
-class The-System {
+class thesystem {
 	package {
 		"python3": ensure => installed,
 	}
@@ -27,7 +27,7 @@ class The-System {
 	}
 
 	file {
-		"/etc/systemd/system/the-system.service"
+		"/etc/systemd/system/the-system.service":
 		ensure => present,
 		source => "puppet:///modules/The-System/the-system.service",
 		mode => 444,

@@ -13,7 +13,7 @@ node ip-10-0-7-8 {
 	include apache
 	include users
 	include mongo
-	include The-System
+	include thesystem
 }
 
 
@@ -22,5 +22,5 @@ node ip-10-0-7-108 {
 	include apache
 	include users
 	include mongo
-	include The-System
+	include thesystem
 }
